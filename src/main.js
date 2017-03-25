@@ -3,10 +3,22 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import App from './app.js';
 
-render((<Provider store={createStore(reducers)}>
+injectTapEventPlugin();
+
+
+render((
+<MuiThemeProvider>
+  <Provider store={createStore(reducers)}>
     <App />
-  </Provider>),
+  </Provider>
+ <MuiThemeProvider>
+  ),
   document.getElementById('root')
 );
