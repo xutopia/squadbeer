@@ -6,7 +6,7 @@ process.traceDeprecation = true;
 
 module.exports = {
   entry: [
-    './main.js',
+    './main.js'
   ],
   output: {
     path: resolve(__dirname, 'dist'),
