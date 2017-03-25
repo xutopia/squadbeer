@@ -7,7 +7,6 @@ process.traceDeprecation = true;
 module.exports = {
   entry: [
     './main.js',
-    'webpack-hot-middleware/client'
   ],
   output: {
     path: resolve(__dirname, 'dist'),
