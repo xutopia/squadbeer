@@ -64,7 +64,7 @@ mapDataSet(state) {
 	  />
     )
   }
-
+}
 
 
 function mapStateToProps(state) {
@@ -75,5 +75,5 @@ function mapStateToProps(state) {
 }
 
 
-export default BarSpecificChart;
+export default connect(null, mapDispatchToProps)(BarSpecificChart);
 
