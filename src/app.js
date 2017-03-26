@@ -1,6 +1,5 @@
 import React from 'react';
 import {render} from 'react-dom';
-<<<<<<< HEAD
 import BarSpecificChart from './containers/barSpecificChart.js'
 import BeerToFood from './containers/BeervsFood.js';
 import InputExternal from './containers/inputExternal.js'
