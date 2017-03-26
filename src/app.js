@@ -1,21 +1,30 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import BarSpecificChart from './containers/barSpecificChart.js'
 // import BeerToFood from './containers/BeervsFood.js';
 import Form from './containers/inputExternal.js'
-import BarTypeChart from './containers/barTypeContainer';
+import BeerToFood from './containers/BeervsFood';
+import FoodToBeer from './containers/FoodvsBeer';
+import BarTypeChart from './components/barTypeChart';
+import BarTypeDropdown from './components/barTypeDropdown';
 
-class App extends React.Component {
-  render() {
-    return (
-    <div>
-      <BarTypeChart />
-   		<Form />
-   		<BarSpecificChart />
-      {/*<BeerToFood />*/}
-    </div>
-    )
-  }
+const App = () => {
+  return (
+    <BrowserRouter>
+      <div>
+        <Route exact path="/" component={Form} />
+        <Route exact path="/BeerToFood" component={BeerToFood} />
+        <Route exact path="/FoodToBeer" component={FoodToBeer} />
+        <Route exact path="/BarTypeChart" component={BarTypeChart} />
+        <Route exact path="/BarTypeDopdown" component={BarTypeDropdown} />
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+function select({ app }) {
+  return { ...app };
+}
+
+export default connect(select)(App);

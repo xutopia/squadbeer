@@ -5,21 +5,23 @@ import InputExternal from './inputExternal';
 import { HorizontalBar } from 'react-chartjs-2';
 import { fetchBeersByFood } from '../actions/actionFile';
 
-const dataSet = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Food to Beers Map',
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
-      hoverBorderWidth: 4,
-      data: []
-    }
-  ]
-};
+// const dataSet = {
+//   labels: [],
+//   datasets: [
+//     {
+//       label: 'Food to Beers Map',
+//       backgroundColor: 'rgba(255,99,132,0.2)',
+//       borderColor: 'rgba(255,99,132,1)',
+//       borderWidth: 1,
+//       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+//       hoverBorderColor: 'rgba(255,99,132,1)',
+//       hoverBorderWidth: 4,
+//       data: []
+//     }
+//   ]
+// };
+
+const dataSet = {};
 
 class BeerToFood extends Component {
   constructor(props) {
@@ -41,7 +43,7 @@ class BeerToFood extends Component {
       <div>
         What kinds of food do people order with this kind of beer?
         <InputExternal dispatchAction={fetchBeersByFood} />
-        <HorizontalBar data={mapDataToDataSet(this.props.data)} />
+        <HorizontalBar data={this.mapDataToDataSet(this.props.data)} />
       </div>
     )
   }
