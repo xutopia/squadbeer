@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router';
 import { connect } from 'react-redux';
 import BarSpecificChart from './containers/barSpecificChart.js'
 // import BeerToFood from './containers/BeervsFood.js';
@@ -11,15 +11,9 @@ import BarTypeDropdown from './components/barTypeDropdown';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Route exact path="/" component={Form} />
-        <Route exact path="/BeerToFood" component={BeerToFood} />
-        <Route exact path="/FoodToBeer" component={FoodToBeer} />
-        <Route exact path="/BarTypeChart" component={BarTypeChart} />
-        <Route exact path="/BarTypeDopdown" component={BarTypeDropdown} />
-      </div>
-    </BrowserRouter>
+    <div>
+      MOTHA FREAKING LANDING PAGE
+    </div>
   )
 }
 

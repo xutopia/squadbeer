@@ -27,8 +27,8 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: resolve(__dirname, 'node_modules')
-        // loader: 'style!css!sass?outputStyle=compress'
+        include: resolve(__dirname, 'node_modules'),
+        loader: 'style!css!sass?outputStyle=compress'
       }
     ]
   },
