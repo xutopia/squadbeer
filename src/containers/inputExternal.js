@@ -25,7 +25,7 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      one: ''
+      input: ''
     };
 
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,10 +45,7 @@ handleSubmit (event) {
   event.preventDefault();
 
   let input = this.state.input;
-  // axios.post('/reverse',{str: input})
-       // .then(word => {
-        this.props.sendExternalId(input);
-       // })
+   this.props.sendExternalId();
 }
 
 render() {
@@ -58,7 +55,7 @@ render() {
       floatingLabelText="Enter External Id"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-      value={this.state.one}
+      value={this.state.input}
       onChange={this.onInputChange}
     /><br />
   </form>

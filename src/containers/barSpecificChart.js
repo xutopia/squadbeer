@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 import { Bar } from 'react-chartjs-2';
 
-// const Top20Chart = (props) => {
-//   const metric = props.search;
-//   // console.log('---- In Top20Chart, props.search = ', props.search);
 
-//   dataSet.labels = props.data.map(
-//     (candidate, index) => `${index + 1}. ${candidate.name}`
-//   );
+class BarSpecificChart extends Component {
+constructor(props) {
+    super(props);
+    this.mapDataSet = this.mapDataSet.bind(this);
+}
 
-//   dataSet.datasets[0].data = props.data.map(
-//     candidate => candidate[metric]
-//   );
 
-const dataSet = {
-  labels: ["budweiser","stella","land shark","bud light"],
+
+mapDataSet(state) {
+
+  if(!state) {
+    return;
+  }
+  const dataSet = {
+  labels: ["."],
   datasets: [
     {
       label: 'Beer Sales',
@@ -26,40 +28,50 @@ const dataSet = {
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
       hoverBorderWidth: 4,
-      data: [22,33,44,55,66,77,88,99,100]
+      data: [0]
     }
   ]
 };
 
-class BarSpecificChart extends Component {
+  console.log("BEERTOTALS:",state.beerTotals)
+
+  state.beerTotals.map(beer => {
+     dataSet.datasets[0].data.push(beer.count)
+  })
+
+  state.beerTotals.map(beer => {
+    
+    dataSet.labels.push(beer.name)
+
+  })
+  console.log("WHAT",dataSet)
+  return dataSet;
+
+}
 
   render() {
 
     return (
       <Bar
-    data={dataSet}
+  data={this.mapDataSet(this.props.topBeers)}
 	width={10}
-	height={200}
+	height={10}
 	xAxisID={"Beers"}
 	yAxisID={"Sales Report"}
-	options={{
-		maintainAspectRatio: false
-	}}
+  options={{
+    maintainAspectRatio: false
+  }}
 	  />
-    );
+    )
   }
+
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     null
-//   };
-// }
+function mapStateToProps(state) {
+  console.log("STATE",state.topBeers)
+  return {
+    topBeers: state.topBeers
+  };
+}
 
-// function mapDispatchToProps(dispatch) {
- 
-//   return bindActionCreators(null, dispatch);
-// }
-
-
-export default BarSpecificChart;
+export default connect(mapStateToProps)(BarSpecificChart);
