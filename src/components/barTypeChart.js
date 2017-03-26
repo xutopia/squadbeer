@@ -7,7 +7,7 @@ const chartData = {
   labels: [],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Alcohol Consumption by Volume',
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 1,
@@ -21,9 +21,11 @@ const chartData = {
 const chartOptions = {
 };
 
-const BarTypeChart = ({ data }) => {
-  chartData.labels = data[0];
-  chartData.datasets[0].data = data[1];
+const BarTypeChart = ({ data, current }) => {
+  if (data && data[current]) {
+    chartData.labels = data[current].name;
+    chartData.datasets[0].data = data[current].consumption;
+  }
 
   return (
     <HorizontalBar
@@ -34,7 +36,10 @@ const BarTypeChart = ({ data }) => {
 };
 
 function mapStateToProps(state) {
-  data: state.currData
+  return {
+    data: state.barType.beerByType,
+    current: state.barType.current
+  };
 }
 
 BarTypeChart.propTypes = {
@@ -42,7 +47,7 @@ BarTypeChart.propTypes = {
 };
 
 BarTypeChart.defaultProps = {
-  data: [ ['a', 'b', 'c'], [1, 2, 3] ]
+  data: []
 };
 
 export default connect(mapStateToProps)(BarTypeChart);

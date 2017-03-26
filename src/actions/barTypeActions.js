@@ -18,3 +18,10 @@ export function getBarTypeBeerConsumption(bar_type) {
     payload: request
   };
 }
+
+export function setCurrentType(current) {
+  return {
+    type: 'set_current_type',
+    current
+  };
+}
