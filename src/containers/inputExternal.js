@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import {red500, indigo300} from 'material-ui/styles/colors';
 import { bindActionCreators } from 'redux';
-// import { sendExternalId } from '../actions/sendExternalId.js';
+import { sendExternalId } from '../actions/sendExternalId.js';
 import axios from 'axios';
 
 const styles = {
@@ -25,30 +25,27 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      one: ''
+      input: ''
     };
 
   this.handleSubmit = this.handleSubmit.bind(this);
   this.onInputChange = this.onInputChange.bind(this);
-
+  
 }
 
 onInputChange(event) {
 
   this.setState({
-    one: event.target.value
-   });
+    input: event.target.value
+   });  
 }
 
 
 handleSubmit (event) {
   event.preventDefault();
 
-  let input = this.state.one;
-  // axios.post('/reverse',{str: input})
-       // .then(word => {
-        this.props.dispatchAction(input);
-       // })
+  let input = this.state.input;
+   this.props.sendExternalId();
 }
 
 render() {
@@ -58,19 +55,19 @@ render() {
       floatingLabelText="Enter External Id"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-      value={this.state.one}
+      value={this.state.input}
       onChange={this.onInputChange}
     /><br />
   </form>
 );
-
+  
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//
-//   return bindActionCreators({ sendExternalId }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+ 
+  return bindActionCreators({ sendExternalId }, dispatch);
+}
 
 
-export default connect(null)(Form);
+export default connect(null, mapDispatchToProps)(Form);
