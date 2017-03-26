@@ -1,12 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
 import BarSpecificChart from './containers/barSpecificChart.js'
+import BeerToFood from './containers/BeervsFood.js';
 
 class App extends React.Component {
   render () {
-    return ( 
+    return (
     <div>
    		<BarSpecificChart />
+      <BeerToFood />
     </div>
     )
   }

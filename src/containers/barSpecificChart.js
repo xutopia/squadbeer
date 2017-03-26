@@ -57,7 +57,7 @@ class BarSpecificChart extends Component {
 // }
 
 // function mapDispatchToProps(dispatch) {
- 
+
 //   return bindActionCreators(null, dispatch);
 // }
 
