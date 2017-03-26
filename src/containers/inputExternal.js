@@ -30,14 +30,15 @@ class Form extends Component {
 
   this.handleSubmit = this.handleSubmit.bind(this);
   this.onInputChange = this.onInputChange.bind(this);
-  
+
 }
 
-onInputChange(event) {
+onInputChange(event, state) {
 
   this.setState({
-    input: event.target.value
-   });  
+    ...state,
+    one: event.target.value
+   });
 }
 
 
@@ -55,17 +56,17 @@ render() {
       floatingLabelText="Enter External Id"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-      value={this.state.input}
-      onChange={this.onInputChange}
+      value={this.state.one}
+      onChange={(event) => this.onInputChange(event, this.state)}
     /><br />
   </form>
 );
-  
+
   }
 }
 
 function mapDispatchToProps(dispatch) {
- 
+
   return bindActionCreators({ sendExternalId }, dispatch);
 }
 
