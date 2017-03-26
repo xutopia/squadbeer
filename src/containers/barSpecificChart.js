@@ -15,6 +15,9 @@ mapDataSet(state) {
   if(!state) {
     return;
   }
+
+  if(this.props.topBeers) {
+
   const dataSet = {
   labels: ["."],
   datasets: [
@@ -31,27 +34,59 @@ mapDataSet(state) {
   ]
 };
 
-  console.log("BEERTOTALS:",state.beerTotals)
+  console.log("BEERTOTALS:",state)
 
-  state.beerTotals.map(beer => {
-     dataSet.datasets[0].data.push(beer.count)
+  state.count.map(count => {
+     dataSet.datasets[0].data.push(count)
   })
 
-  state.beerTotals.map(beer => {
+  state.name.map(beer => {
     
-    dataSet.labels.push(beer.name)
+    dataSet.labels.push(beer)
 
   })
   console.log("WHAT",dataSet)
   return dataSet;
 
+} else {
+   
+
+  const dataSet = {
+  labels: ["."],
+  datasets: [
+    {
+      label: 'Beer Sales',
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      hoverBorderWidth: 4,
+      data: [0]
+    }
+  ]
+};
+
+
+  state.foodTotals.map(food => {
+     dataSet.datasets[0].data.push(food.count)
+  })
+
+  state.foodTotals.map(food => {
+    
+    dataSet.labels.push(food.name)
+
+  })
+  console.log("WHAT food",dataSet)
+  return dataSet;
 }
+  }
 
   render() {
 
     return (
       <Bar
-  data={this.mapDataSet(this.props.topBeers)}
+  data={this.props.topBeers ? this.mapDataSet(this.props.topBeers) : this.mapDataSet(this.props.topFoods)}
 	width={10}
 	height={10}
 	xAxisID={"Beers"}

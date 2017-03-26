@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {red500, indigo300} from 'material-ui/styles/colors';
 import { bindActionCreators } from 'redux';
 import { sendExternalId } from '../actions/sendExternalId.js';
+import { sendExternalIdForFood } from '../actions/sendExternalIdForFood.js'
 import axios from 'axios';
 
 const styles = {
@@ -25,7 +26,8 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      input: ''
+      input: '',
+      foodInput:''
     };
 
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,25 +43,53 @@ onInputChange(event, state) {
    });
 }
 
+onFoodChange(event, state) {
+
+  this.setState({
+    ...state,
+    foodInput: event.target.value
+   });
+}
+
 
 handleSubmit (event) {
   event.preventDefault();
 
-  let input = this.state.input;
-   this.props.sendExternalId(input);
+  if(this.state.input === '') {
+    this.props.sendExternalIdForFood(this.state.foodInput)
+  }
+
+  let result = this.state.input;
+  axios.post('/api/externalId',{result:result})
+       .then(res => {
+         this.props.sendExternalId(res);
+       })
+   
 }
 
 render() {
  return (
+  <div>
   <form onSubmit={this.handleSubmit}>
     <TextField
-      floatingLabelText="Enter External Id"
+      floatingLabelText="Bar's Best Selling Beer"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-      value={this.state.one}
+      value={this.state.input}
       onChange={(event) => this.onInputChange(event, this.state)}
     /><br />
   </form>
+
+  <form onSubmit={this.handleSubmit}>
+    <TextField
+      floatingLabelText="Bar's Best Selling Food"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+      value={this.state.foodInput}
+      onChange={(event) => this.onFoodChange(event, this.state)}
+    /><br />
+  </form>
+  </div>
 );
 
   }
@@ -67,7 +97,7 @@ render() {
 
 function mapDispatchToProps(dispatch) {
 
-  return bindActionCreators({ sendExternalId }, dispatch);
+  return bindActionCreators({ sendExternalId , sendExternalIdForFood}, dispatch);
 }
 
 
