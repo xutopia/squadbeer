@@ -7,17 +7,20 @@ export default function barTypes(state = {}, action) {
       };
     }
     case 'get_bartype_beers': {
-      // const { query } = action;
       const beerByType = state.beerByType || {};
       const { data, barType } = action.payload.data;
-      console.log('\nbar type consumption reducer!!')
-      console.log(action.payload.data);
 
       beerByType[barType] = data;
 
       return {
         ...state,
         beerByType
+      };
+    }
+    case 'set_current_type': {
+      return {
+        ...state,
+        current: action.current
       };
     }
     default: {
