@@ -7,7 +7,7 @@ import BarTypeDropDown from '../components/barTypeDropdown';
 const BarTypeContainer = () =>
   <div>
     <BarTypeDropDown />
-    <BarTypeChart />
+    {/*<BarTypeChart />*/}
   </div>;
 
 export default BarTypeContainer;
