@@ -33,6 +33,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(www));
 app.use('/api', router);
+app.use('/api', route);
 
 const server = app.listen(3000, () => {
   const port = server.address().port;

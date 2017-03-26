@@ -12,7 +12,6 @@ class App extends React.Component {
       <BarTypeChart />
    		<Form />
    		<BarSpecificChart />
-      {/*<BeerToFood />*/}
     </div>
     )
   }
