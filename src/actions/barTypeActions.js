@@ -15,4 +15,3 @@ export function getBarTypeBeers(barType) {
     payload: request
   };
 }
-
