@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { HorizontalBar } from 'react-chartjs-2';
 
-import chooseBarType from '../actions/barTypeVsBeerActions';
+import chooseBarType from '../actions/barTypeActions';
 
 class BarTypeChart extends Component {
   constructor(props) {
