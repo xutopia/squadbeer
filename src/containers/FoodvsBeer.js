@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputFood from './inputFood';
 import { HorizontalBar } from 'react-chartjs-2';
-import { fetchFoodsByBeer } from '../actions/actionFile';
+import { fetchBeersByFood } from '../actions/actionFile';
 
 const dataSet = {
   labels: [],
@@ -41,7 +41,7 @@ class FoodToBeer extends Component {
     return (
       <div>
         What kinds of beer do people order with this kind of food?
-        <InputFood dispatchAction={fetchFoodsByBeer} />
+        <InputFood dispatchAction={fetchBeersByFood} />
         <HorizontalBar data={this.mapDataToDataSet(this.props.data)} />
       </div>
     )

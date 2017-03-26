@@ -28,27 +28,36 @@ router.post('/barTypeConsumption', (req, res) => {
 });
 
 router.post('/foodToBeers', (req, res) => {
-  const { food } = req.body;
+  const bod = {
+    product: req.body.food,
+    category: "beer"
+  }
   const config = {
     uri: `${ROOT_URL}/get_product_qty`,
-    body: { food },
+    body: bod,
     json: true
   }
   console.log('foodToBeers');
-  rp.get(config)
+  rp.post(config)
   .catch(err => console.error(err))
-  .then(data => res.send(data));
+  .then((data) => {
+    console.log('data from food query:', data);
+    res.send(data)
+  });
 });
 
 router.post('/beerToFoods', (req, res) => {
-  const { beer } = req.body;
+  const bod = {
+    product: req.body.beer,
+    category: "food"
+  }
   const config = {
     uri: `${ROOT_URL}/get_product_qty`,
-    body: { beer },
+    body: bod,
     json: true
   }
   console.log('beerToFoods');
-  rp.get(config)
+  rp.post(config)
   .catch(err => console.error(err))
   .then(data => res.send(data));
 });

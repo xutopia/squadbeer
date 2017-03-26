@@ -8,15 +8,11 @@ import BeerToFood from './containers/BeervsFood';
 import FoodToBeer from './containers/FoodvsBeer';
 import BarTypeChart from './components/barTypeChart';
 import BarTypeDropdown from './components/barTypeDropdown';
-import { Link } from 'react-router';
 import MenuItem from 'material-ui/MenuItem';
 
 const App = () => {
   return (
     <div>
-
-    <MenuItem containerElement={<Link to="/"/>}>Home</MenuItem>
-    <MenuItem containerElement={<Link to="/BarTypeChart"/>}>Bar Type</MenuItem>
       <BarTypeChart />
    		<BarSpecificChart />
       <FoodToBeer />
