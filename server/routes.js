@@ -27,4 +27,31 @@ router.post('/barTypeConsumption', (req, res) => {
   });
 });
 
+router.post('/foodToBeers', (req, res) => {
+  const { food } = req.body;
+  const config = {
+    uri: `${ROOT_URL}/get_product_qty`,
+    body: { food },
+    json: true
+  }
+  console.log('foodToBeers');
+  rp.get(config)
+  .catch(err => console.error(err))
+  .then(data => res.send(data));
+});
+
+router.post('/beerToFoods', (req, res) => {
+  const { beer } = req.body;
+  const config = {
+    uri: `${ROOT_URL}/get_product_qty`,
+    body: { beer },
+    json: true
+  }
+  console.log('beerToFoods');
+  rp.get(config)
+  .catch(err => console.error(err))
+  .then(data => res.send(data));
+});
+
+
 module.exports = router;
