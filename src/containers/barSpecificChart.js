@@ -23,10 +23,10 @@ mapDataSet(state) {
   datasets: [
     {
       label: 'Beer Sales',
-      backgroundColor: 'rgba(255,99,132,0.2)',
+      backgroundColor: 'rgb(204, 153, 0)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBackgroundColor: 'rgb(255, 255, 0)',
       hoverBorderColor: 'rgba(255,99,132,1)',
       hoverBorderWidth: 4,
       data: [0]
@@ -55,11 +55,11 @@ mapDataSet(state) {
   labels: ["."],
   datasets: [
     {
-      label: 'Beer Sales',
-      backgroundColor: 'rgba(255,99,132,0.2)',
+      label: 'Food Sales',
+      backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBackgroundColor: 'rgb(204, 0, 0)',
       hoverBorderColor: 'rgba(255,99,132,1)',
       hoverBorderWidth: 4,
       data: [0]
