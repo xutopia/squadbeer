@@ -18,7 +18,7 @@ render((
   <Provider store={createStore(reducers)}>
     <App />
   </Provider>
- <MuiThemeProvider>
+</MuiThemeProvider>
   ),
   document.getElementById('root')
 );
