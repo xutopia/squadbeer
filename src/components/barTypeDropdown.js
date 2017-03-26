@@ -2,70 +2,61 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import getBarTypes from '../actions/barTypeActions';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+import getBarTypes, { getBarTypeBeerConsumption } from '../actions/barTypeActions';
 
 class BarTypeDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      barType: this.props.barType
+      value: 0
     };
-    // this.props.getBarTypes();
-    this.changeHandler = this.changeHandler.bind(this);
+    this.props.getBarTypes();
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  changeHandler(event) {
-    if (event.option !== this.state.barType) {
-      this.setState({ barType: event.option });
+  handleChange(event, i, value) {
+    const { barTypeOptions } = this.props;
+    if (this.state.value !== value) {
+      this.setState({ value });
+      this.props.getBarTypeBeerConsumption(barTypeOptions[value]);
     }
   }
 
   render() {
     const options = this.props.barTypeOptions
-      .map(opt => <option value="test" >{ opt }</option>);
+      .map((opt, i) => <MenuItem value={i} primaryText={opt} />);
 
     return (
-      <form>
-        <select
-          value={this.state.barType}
-          onChange={this.changeHandler}
-          placeholder="select the type of establishment"
-        >
-          { options }
-        </select>
-      </form>
+      <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        { options }
+      </DropDownMenu>
     );
   }
 }
 
 BarTypeDropdown.defaultProps = {
-  barType: 'bar/pub',
   barTypeOptions: [
-    'bar/pub',
-    'trendy bar',
-    'dive bar',
-    'sports bar',
-    'trendy restaurant',
-    'trashy restaurant',
-    'nightclub',
-    'adult bar'
+    'loading...'
   ]
 };
 
 BarTypeDropdown.propTypes = {
-  barType: React.PropTypes.string,
-  barTypeOptions: React.PropTypes.array
+  barTypeOptions: React.PropTypes.array,
+  getBarTypes: React.PropTypes.func,
+  getBarTypeBeerConsumption: React.PropTypes.func
 };
-
 
 function mapStateToProps(state) {
   return {
     barType: state.barType,
-    barTypeOptions: state.barTypes
+    barTypeOptions: state.barType.types
   };
 }
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getBarTypes }, dispatch);
+  return bindActionCreators({ getBarTypes, getBarTypeBeerConsumption }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BarTypeDropdown);

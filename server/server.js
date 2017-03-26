@@ -1,38 +1,38 @@
 const express = require('express');
 const { resolve } = require('path');
+const bodyParser = require('body-parser')
 
 const app = express();
 const www = resolve(__dirname, '../dist');
 
-// begin webpack middleware
 const router = require('./routes.js');
 const route = require('./narminRoutes.js');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../webpack.config.js');
 
-const compiler = webpack(webpackConfig);
+// begin webpack middleware
+// const webpack = require('webpack');
+// const webpackDevMiddleware = require('webpack-dev-middleware');
+// const webpackHotMiddleware = require('webpack-hot-middleware');
+// const webpackConfig = require('../webpack.config.js');
 
-app.use(webpackDevMiddleware(compiler, {
-  hot: true,
-  filename: 'bundle.js',
-  publicPath: '/',
-  stats: {
-    colors: true
-  },
-  historyApiFallback: true
-}));
-app.use(webpackHotMiddleware(compiler));
+// const compiler = webpack(webpackConfig);
+
+// app.use(webpackDevMiddleware(compiler, {
+//   hot: true,
+//   filename: 'bundle.js',
+//   publicPath: '/',
+//   stats: {
+//     colors: true
+//   },
+//   historyApiFallback: true
+// }));
+// app.use(webpackHotMiddleware(compiler));
 // end webpack middleware
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use(express.static(www));
-app.use(router);
-app.use(route);
-app.get('/api', (req, res) => {
-  console.log(new Date());
-  res.json(new Date());
-});
+app.use('/api', router);
 
 const server = app.listen(3000, () => {
   const port = server.address().port;
