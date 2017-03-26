@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import getBarTypes from '../actions/barTypeActions';
 
 class BarTypeDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       barType: this.props.barType
-    }
-    this.props.getBarTypes();
-    
+    };
+    // this.props.getBarTypes();
     this.changeHandler = this.changeHandler.bind(this);
   }
 
@@ -19,14 +21,18 @@ class BarTypeDropdown extends Component {
   }
 
   render() {
+    const options = this.props.barTypeOptions
+      .map(opt => <option value="test" >{ opt }</option>);
+
     return (
       <form>
         <select
           value={this.state.barType}
           onChange={this.changeHandler}
-          options={this.props.barTypeOptions}
           placeholder="select the type of establishment"
-        />
+        >
+          { options }
+        </select>
       </form>
     );
   }
@@ -36,12 +42,14 @@ BarTypeDropdown.defaultProps = {
   barType: 'bar/pub',
   barTypeOptions: [
     'bar/pub',
-    'bar/pub',
-    'bar/pub',
-    'bar/pub',
-    'bar/pub',
-    'bar/pub',
-    'bar/pub'
+    'trendy bar',
+    'dive bar',
+    'sports bar',
+    'trendy restaurant',
+    'trashy restaurant',
+    'nightclub',
+    'adult bar'
+  ]
 };
 
 BarTypeDropdown.propTypes = {
@@ -52,7 +60,7 @@ BarTypeDropdown.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    barType: state.bar.barType,
+    barType: state.barType,
     barTypeOptions: state.barTypes
   };
 }
