@@ -10,8 +10,6 @@ constructor(props) {
     this.mapDataSet = this.mapDataSet.bind(this);
 }
 
-
-
 mapDataSet(state) {
 
   if(!state) {
@@ -75,5 +73,5 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(null, mapDispatchToProps)(BarSpecificChart);
+export default connect(mapStateToProps)(BarSpecificChart);
 
