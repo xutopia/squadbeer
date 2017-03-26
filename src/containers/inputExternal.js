@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import {red500, indigo300} from 'material-ui/styles/colors';
 import { bindActionCreators } from 'redux';
-import { sendExternalId } from '../actions/sendExternalId.js';
+// import { sendExternalId } from '../actions/sendExternalId.js';
 import axios from 'axios';
 
 const styles = {
@@ -30,24 +30,24 @@ class Form extends Component {
 
   this.handleSubmit = this.handleSubmit.bind(this);
   this.onInputChange = this.onInputChange.bind(this);
-  
+
 }
 
 onInputChange(event) {
 
   this.setState({
-    input: event.target.value
-   });  
+    one: event.target.value
+   });
 }
 
 
 handleSubmit (event) {
   event.preventDefault();
 
-  let input = this.state.input;
+  let input = this.state.one;
   // axios.post('/reverse',{str: input})
        // .then(word => {
-        this.props.sendExternalId(input);
+        this.props.dispatchAction(input);
        // })
 }
 
@@ -63,14 +63,14 @@ render() {
     /><br />
   </form>
 );
-  
+
   }
 }
 
-function mapDispatchToProps(dispatch) {
- 
-  return bindActionCreators({ sendExternalId }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//
+//   return bindActionCreators({ sendExternalId }, dispatch);
+// }
 
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null)(Form);
