@@ -11,10 +11,6 @@ import reducers from './reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import promise from 'redux-promise';
-
-
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 import App from './app';
 
@@ -30,11 +26,11 @@ const store = createStore(
 );
 
 render((
-<MuiThemeProvider>
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-</MuiThemeProvider>
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </MuiThemeProvider>
   ),
   document.getElementById('root')
 );
