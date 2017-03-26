@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import TopBeers from './topBeers.js';
+import TopBeers from './topBeers';
 import barType from './barTypeReducer';
 
 const rootReducer = combineReducers({
