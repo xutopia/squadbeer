@@ -1,7 +1,7 @@
 // Component for requesting specific foods ordered and how many of each type of beer was ordered with said food
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InputExternal from './inputExternal';
+import InputFood from './inputFood';
 import { HorizontalBar } from 'react-chartjs-2';
 import { fetchFoodsByBeer } from '../actions/actionFile';
 
@@ -30,7 +30,8 @@ class FoodToBeer extends Component {
   }
 
   mapDataToDataSet(foodData) {
-    if(foodData !== null) {
+    console.log('xxxxx', foodData);
+    if(foodData !== undefined) {
       dataSet.labels = foodData.x;
       dataSet.datasets[0].data = foodData.y;
     }
@@ -40,7 +41,7 @@ class FoodToBeer extends Component {
     return (
       <div>
         What kinds of beer do people order with this kind of food?
-        <InputExternal dispatchAction={fetchFoodsByBeer} />
+        <InputFood dispatchAction={fetchFoodsByBeer} />
         <HorizontalBar data={this.mapDataToDataSet(this.props.data)} />
       </div>
     )

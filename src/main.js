@@ -3,7 +3,7 @@ import ReduxPromise from 'redux-promise';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
-import { Router, hashHistory } from 'react-router';
+// import { Router, hashHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducers from './reducers';
@@ -12,7 +12,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import routes from './routes';
+// import routes from './routes';
+import App from './app';
 
 injectTapEventPlugin();
 
@@ -28,7 +29,7 @@ const store = createStore(
 render((
   <MuiThemeProvider>
     <Provider store={store}>
-      <Router history={hashHistory} routes={routes} />
+      <App />
     </Provider>
   </MuiThemeProvider>
   ),

@@ -42,6 +42,7 @@ class BeerToFood extends Component {
       <div>
         What kinds of food do people order with this kind of beer?
         <InputExternal dispatchAction={fetchBeersByFood} />
+        
         <HorizontalBar data={this.mapDataToDataSet(this.props.data)} />
       </div>
     )
