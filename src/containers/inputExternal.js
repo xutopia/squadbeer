@@ -37,7 +37,7 @@ onInputChange(event, state) {
 
   this.setState({
     ...state,
-    one: event.target.value
+    input: event.target.value
    });
 }
 
@@ -46,7 +46,7 @@ handleSubmit (event) {
   event.preventDefault();
 
   let input = this.state.input;
-   this.props.sendExternalId();
+   this.props.sendExternalId(input);
 }
 
 render() {
